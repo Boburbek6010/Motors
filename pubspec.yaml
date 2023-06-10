@@ -1,0 +1,33 @@
+name: gm_motors
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  l: ^3.2.0
+  flutter_riverpod: ^2.2.0
+  animated_text_kit: ^4.2.2
+  assets_audio_player: ^3.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/audios/
+    - assets/lotties/
+    - assets/images/back/

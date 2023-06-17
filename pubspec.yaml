@@ -1,7 +1,7 @@
 name: gm_motors
 description: A new Flutter project.
 
-version: 1.0.0+1
+version: 1.0.3
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.3
   l: ^3.2.0
   flutter_riverpod: ^2.2.0
   animated_text_kit: ^4.2.2

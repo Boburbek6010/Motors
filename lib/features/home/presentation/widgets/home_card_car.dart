@@ -25,11 +25,14 @@ class HomeCardCar extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Spacer(),
             Image.asset(image, fit: BoxFit.cover,),
+            const Spacer(),
             Text(text,style: const TextStyle(
                 color: AppColors.white,
                 fontSize: 18
             ),),
+            const SizedBox(height: 10,),
           ],
         ),
       ),

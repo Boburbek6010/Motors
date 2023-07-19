@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gm_motors/core/widget/custom_scaffold.dart';
@@ -20,21 +21,28 @@ class DetailPage extends ConsumerWidget {
           centerTitle: true,
           elevation: 0,
           toolbarHeight: 70,
-          title: Text(ref.read(detailController).customCar!.name),
+
+          title: Text(ref.read(detailController).customCar!.name, style: const TextStyle(
+            color: AppColors.white,
+          ),),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
-              Image.asset(ref.read(detailController).customCar!.image, fit: BoxFit.cover,),
+              CachedNetworkImage(
+                imageUrl: ref.read(detailController).customCar!.image,
+                placeholder: (context, url) => const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
               const Text('Qisqacha Ta\'rif:', style: TextStyle(
                   fontSize: 22,
                   color: AppColors.white,
                   fontWeight: FontWeight.w700
               ),),
               const SizedBox(height: 15),
-              Text(ref.read(detailController).info, style: const TextStyle(
+              Text(ref.read(detailController).customCar!.desc, style: const TextStyle(
                 color: AppColors.white,
                   fontWeight: FontWeight.w300
               ),),

@@ -6,6 +6,7 @@ class CustomScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    // resizeToAvoidBottomInset: false,
     body: Container(
       padding: EdgeInsets.zero,
       margin: EdgeInsets.zero,

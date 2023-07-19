@@ -7,7 +7,6 @@ class AppImages {
   ///  Svg
 
 
-
   ///  Png
 
   static final welcomeImage = Image.asset(

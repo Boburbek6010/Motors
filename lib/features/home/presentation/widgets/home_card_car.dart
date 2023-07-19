@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gm_motors/core/style/colors.dart';
 
@@ -26,7 +27,11 @@ class HomeCardCar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            Image.asset(image, fit: BoxFit.cover,),
+            CachedNetworkImage(
+              imageUrl: image,
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
             const Spacer(),
             Text(text,style: const TextStyle(
                 color: AppColors.white,

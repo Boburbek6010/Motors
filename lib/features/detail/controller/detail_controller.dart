@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,6 +24,7 @@ class DetailCT extends ChangeNotifier {
 
   CustomCar getModel(BuildContext context){
     customCar = ModalRoute.of(context)?.settings.arguments as CustomCar;
+    log(customCar!.desc);
     return customCar!;
   }
 

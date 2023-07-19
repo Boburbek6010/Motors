@@ -10,11 +10,15 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.3
   l: ^3.2.0
+  cupertino_icons: ^1.0.2
   flutter_riverpod: ^2.2.0
-  animated_text_kit: ^4.2.2
-  assets_audio_player: ^3.0.6
+  firebase_auth: any
+  firebase_core: any
+  shared_preferences: ^2.2.0
+  cloud_firestore: any
+  firebase_storage: any
+  cached_network_image: ^3.2.0
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +32,4 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/audios/
-    - assets/lotties/
     - assets/images/back/

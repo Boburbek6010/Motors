@@ -13,6 +13,8 @@ class AppColors {
   static const green = Color(0xFF03c04a);
 
   //every colors
+  static const cF3F7F9 = Color(0xffF3F7F9);
+  static const n26FFFFFF = Color(0x26ffffff);
   static const c292C31 = Color(0xff292C31);
   static const c5effffff = Color(0x5effffff);
   static const c5D6167 = Color(0xff5D6167);
@@ -24,6 +26,8 @@ class AppColors {
   static const c33FFFFFF = Color(0x1affffff);
   static const c292929 = Color(0xff292929);
   static const neuBlack = Color(0xFF3E3E3E);
+  static const c3554D1 = Color(0xff3554D1);
+  static const c121F3E = Color(0xff121F3E);
 
   // gradients
   static const unlockPageGradient = <Color>[c252323, c000000,c000000,c000000,  c252323];

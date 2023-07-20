@@ -20,19 +20,102 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextEditingController nameController = TextEditingController();
+    TextEditingController priceController = TextEditingController();
+    TextEditingController descController = TextEditingController();
+    TextEditingController currencyController = TextEditingController();
+
+    final CollectionReference products = FirebaseFirestore.instance.collection("products");
+
+
+
+    Future<void> productCreate([DocumentSnapshot? documentSnapshot]) async {
+
+      await showModalBottomSheet(
+          isScrollControlled: true,
+          context: context,
+          builder: (BuildContext ctx) {
+            return Padding(
+              padding: EdgeInsets.only(
+                  top: 20,
+                  left: 20,
+                  right: 20,
+                  bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(labelText: 'Name'),
+                  ),
+                  TextField(
+                    controller: descController,
+                    decoration: const InputDecoration(labelText: 'Desc'),
+                  ),
+                  TextField(
+                    controller: currencyController,
+                    decoration: const InputDecoration(labelText: 'Currency'),
+                  ),
+                  TextField(
+                    keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                    controller: priceController,
+                    decoration: const InputDecoration(
+                      labelText: 'Price',
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    child: const Text('Create'),
+                    onPressed: () async {
+                      final String name = nameController.text;
+                      final String currency = currencyController.text;
+                      final String desc = descController.text;
+                      final double? price = double.tryParse(priceController.text);
+                      if (price != null) {
+                        await products.add({"name": name, "price": price, "description": desc, "currency": currency});
+
+                        nameController.text = '';
+                        priceController.text = '';
+                        descController.text = '';
+                        currencyController.text = '';
+                        Navigator.of(context).pop();
+                      }
+                    },
+                  )
+                ],
+              ),
+            );
+
+          });
+    }
+
+
+
+    log(userName.toString());
     ref.watch(homeController);
     return CustomScaffold(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            productCreate();
+          },
+        ),
         drawer: Drawer(
           child: CustomHomeDrawer(
             name: userName,
             email: userEmail,
+            profilePressed: (){},
+            logOutPressed: () {},
             deleteAccountPressed: () {
-              log("message1");
-              ref.read(homeController).report(context);
-            },
-            logOutPressed: () {
-              log("3");
+              ref.read(homeController).report(
+                userName,
+                userEmail,
+                context,
+              );
             },
           )
         ),
@@ -66,6 +149,10 @@ class HomePage extends ConsumerWidget {
                             ),
                             itemCount:  streamSnapshot.data!.docs.length,
                             itemBuilder: (ctx, index) {
+                              Object? customCar = streamSnapshot.data!.docChanges[index].doc.data();
+                              Map<String, dynamic> car = customCar as Map<String, dynamic>;
+                              CustomCar data = CustomCar.fromJson(car);
+                              log("name: ${data.name}");
                               final DocumentSnapshot documentSnapshot =
                               streamSnapshot.data!.docs[index];
                               return HomeCardCar(
@@ -77,7 +164,7 @@ class HomePage extends ConsumerWidget {
                                       desc: documentSnapshot["description"],
                                       name: documentSnapshot["name"],
                                       image: ref.read(homeController).carImage[index],
-                                      price: documentSnapshot["price"].toString(),
+                                      price: documentSnapshot["price"],
                                     ),
                                   );
                                 },

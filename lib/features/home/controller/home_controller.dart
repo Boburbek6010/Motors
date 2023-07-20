@@ -1,17 +1,18 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gm_motors/core/services/util_service.dart';
+import 'package:gm_motors/core/style/colors.dart';
 
 final homeController = ChangeNotifierProvider.autoDispose((ref) => HomeCT());
 
 class HomeCT extends ChangeNotifier {
   final CollectionReference _user = FirebaseFirestore.instance.collection("user");
   final CollectionReference products = FirebaseFirestore.instance.collection("products");
-  final CollectionReference deleteAccount = FirebaseFirestore.instance.collection("products");
+  final CollectionReference deleteAccount = FirebaseFirestore.instance.collection("deleteAccount");
   final TextEditingController contentController = TextEditingController();
   final TextEditingController deleteAccountController = TextEditingController();
   final _storage = FirebaseStorage.instance.ref();
@@ -20,8 +21,12 @@ class HomeCT extends ChangeNotifier {
 
   List<String> carImage = [];
 
-  Future<void> sendPaper(String email, String name,
-      [DocumentSnapshot? documentSnapshot]) async {
+
+
+
+
+
+  Future<void> sendPaper(String email, String name, [DocumentSnapshot? documentSnapshot]) async {
     final String content = contentController.text;
     await _user.add({"content": content, "email": email, "name": name});
     contentController.text = '';
@@ -32,8 +37,7 @@ class HomeCT extends ChangeNotifier {
       return null;
     }
     try {
-      Reference reference =
-          _storage.child(folder).child("${imgName.toLowerCase()}.jpg");
+      Reference reference = _storage.child(folder).child("${imgName.toLowerCase()}.jpg");
 
       String downloadUrl = await reference.getDownloadURL();
       log(downloadUrl);
@@ -45,7 +49,7 @@ class HomeCT extends ChangeNotifier {
   }
 
   Future<void> getAllImages() async {
-    List<String> imgNames = ["bb", "cc"];
+    List<String> imgNames = ["labo", "damas", "spark", "nexia", "cobalt", "lacetti", "malibu", "onix", "tracker", "equinox", "traverse", "tahoe"];
     try {
       for (var img in imgNames) {
         final imgUrl = await getImageUrl(img);
@@ -62,15 +66,11 @@ class HomeCT extends ChangeNotifier {
     getAllImages();
   }
 
-  Future<void> report(BuildContext context, [DocumentSnapshot? documentSnapshot]) async {
-
-    log("message");
-
+  Future<void> report(String name, String contact, BuildContext context, [DocumentSnapshot? documentSnapshot]) async {
     await showModalBottomSheet(
         isScrollControlled: true,
         context: context,
         builder: (BuildContext ctx) {
-          notifyListeners();
           return Padding(
             padding: EdgeInsets.only(
                 top: 20,
@@ -90,13 +90,17 @@ class HomeCT extends ChangeNotifier {
                   height: 20,
                 ),
                 MaterialButton(
+                  shape: const StadiumBorder(),
+                  color: AppColors.white,
                   child: const Text('Report'),
                   onPressed: () async {
                     final String reason = deleteAccountController.text;
-                    final String date = "${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day} \nsoat:${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
-                    await deleteAccount.add({"reason": reason, "date": date});
+                    final String date = "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year }  \nsoat:${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
+                    await deleteAccount.add({"reason": reason, "date": date, "name":name, "contact": contact});
                     deleteAccountController.text = '';
                     Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                    Utils.fireSnackBar("Sizni so'rovingizni tez orada ko'rib chiqamiz", context);
                   },
                 )
               ],
@@ -104,5 +108,6 @@ class HomeCT extends ChangeNotifier {
           );
         },
     );
+    notifyListeners();
   }
 }

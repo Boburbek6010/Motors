@@ -4,14 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gm_motors/core/style/colors.dart';
 
+import 'every_drawer_item.dart';
+
 class CustomHomeDrawer extends StatelessWidget {
   final String name;
   final String email;
   final VoidCallback deleteAccountPressed;
   final VoidCallback logOutPressed;
-  // final VoidCallback deleteAccountPressed;
+  final VoidCallback profilePressed;
 
-  const CustomHomeDrawer({super.key, required this.name, required this.email, required this.deleteAccountPressed, required this.logOutPressed});
+  const CustomHomeDrawer({super.key, required this.name, required this.email, required this.deleteAccountPressed, required this.logOutPressed, required this.profilePressed});
 
   @override
   Widget build(BuildContext context) {
@@ -60,50 +62,21 @@ class CustomHomeDrawer extends StatelessWidget {
               ],
             ),
           ),
-          MaterialButton(
-            padding: EdgeInsets.zero,
-            onPressed: (){
-              print("object10");
-              log("message10");
-            },
-            child: ListTile(
-              leading: const Icon(Icons.logout, color: AppColors.white),
-              title: const Text('Log out', style: TextStyle(
-                color: AppColors.white,
-              ),),
-              onTap: () {
-                // Handle item 1 tap
-              },
-            ),
+          EveryDrawerItem(
+            name: "Profile",
+            icon: Icons.person,
+            onPressed: profilePressed,
           ),
-          MaterialButton(
-            padding: EdgeInsets.zero,
-            onPressed: (){
-              print("object");
-              log("message5");
-            },
-            child: ListTile(
-              leading: const Icon(CupertinoIcons.square_arrow_left, color: AppColors.white),
-              title: const Text('Log out', style: TextStyle(
-                color: AppColors.white,
-              ),),
-              onTap: () {
-                // Handle item 1 tap
-              },
-            ),
+          EveryDrawerItem(
+            name: "Log out",
+            icon: CupertinoIcons.square_arrow_left,
+            onPressed: logOutPressed,
           ),
-          MaterialButton(
-            padding: EdgeInsets.zero,
+          EveryDrawerItem(
+            color: AppColors.red,
+            name: "Delete account",
+            icon: CupertinoIcons.delete,
             onPressed: deleteAccountPressed,
-            child: ListTile(
-              leading: const Icon(CupertinoIcons.delete_simple, color: AppColors.red),
-              title: const Text('Delete account', style: TextStyle(
-                color: AppColors.red,
-              ),),
-              onTap: () {
-                // Handle item 1 tap
-              },
-            ),
           ),
         ],
       ),

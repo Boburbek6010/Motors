@@ -32,7 +32,7 @@ class DetailPage extends ConsumerWidget {
             physics: const BouncingScrollPhysics(),
             children: [
               CachedNetworkImage(
-                imageUrl: ref.read(detailController).customCar!.image,
+                imageUrl: ref.read(detailController).customCar!.image!,
                 placeholder: (context, url) => const CircularProgressIndicator(),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),

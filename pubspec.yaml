@@ -19,6 +19,9 @@ dependencies:
   cloud_firestore: any
   firebase_storage: any
   cached_network_image: ^3.2.0
+  rate_my_app: any
+  firebase_remote_config: ^4.2.4
+  firebase_analytics: ^10.4.4
 
 dev_dependencies:
   flutter_test:

@@ -9,12 +9,25 @@ class AppImages {
 
   ///  Png
 
-  static final welcomeImage = Image.asset(
-    'assets/images/image.png',
+  static final snowImage = Image.asset(
+    'assets/images/back/snow.gif',
     height: double.infinity,
     width: double.infinity,
     fit: BoxFit.cover,
   );
+
+
+
+  static final coloredImage = Image.asset(
+    'assets/images/back/just1.jpeg',
+    height: double.infinity,
+    width: double.infinity,
+    fit: BoxFit.cover,
+  );
+
+
+
+
 
 
 }

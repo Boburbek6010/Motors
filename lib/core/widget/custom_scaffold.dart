@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gm_motors/core/services/remote_service.dart';
+import 'package:gm_motors/core/style/images.dart';
 
 class CustomScaffold extends StatelessWidget {
   final Widget child;
@@ -6,14 +8,13 @@ class CustomScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    // resizeToAvoidBottomInset: false,
     body: Container(
       padding: EdgeInsets.zero,
       margin: EdgeInsets.zero,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage('assets/images/back/just1.jpeg'),
+          image: (RemoteService.availableBackgrounds[RemoteService.backgroundImage]).image,
         ),
       ),
       child: child,

@@ -24,8 +24,6 @@ class _AppMaterialContextState extends State<AppMaterialContext> {
         ),
       ),
       useMaterial3: true,
-      scaffoldBackgroundColor: AppColors.white,
-      primarySwatch: Colors.blueGrey,
     ),
     initialRoute: AppRouteNames.AUTHGATE,
     routes: AppRoutes.routes,

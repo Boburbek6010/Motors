@@ -24,7 +24,7 @@ class SignInPage extends ConsumerWidget {
             children: [
               const SizedBox(height: 100),
               const Text(
-                "Hello Bakhtiyor \n     stay here",
+                "Whatever happens\n  here, stays here",
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w500,

@@ -58,9 +58,9 @@ android {
         applicationId "com.gm_motors"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 2
+        versionCode 5
         versionName flutterVersionName
         multiDexEnabled = true
     }

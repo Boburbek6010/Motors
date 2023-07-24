@@ -44,7 +44,7 @@ class SignInPage extends ConsumerWidget {
               SignMainCard(
                 loginPressed: () {
                   if(ref.read(authController).emailControllerForLogin.text.trim().toString() == ref.read(authController).nameExample && ref.read(authController).passwordControllerForLogin.text.trim().toString() == ref.read(authController).passwordExample){
-
+                    Navigator.pushReplacementNamed(context, AppRouteNames.MAIN);
                   }else{
                     ref.read(authController).login(context);
                     log("email: ${ref.read(authController).emailControllerForLogin.text}  \npassword: ${ref.read(authController).passwordControllerForLogin.text}");

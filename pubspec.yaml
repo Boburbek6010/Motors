@@ -1,7 +1,7 @@
 name: gm_motors
-description: A new Flutter project.
+description: Info about GM Motor Cars
 
-version: 1.0.3
+version: 1.0.5
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
@@ -18,10 +18,12 @@ dependencies:
   shared_preferences: ^2.2.0
   cloud_firestore: any
   firebase_storage: any
-  cached_network_image: ^3.2.0
+  cached_network_image: ^3.2.3
   rate_my_app: any
   firebase_remote_config: ^4.2.4
   firebase_analytics: ^10.4.4
+  model_viewer_plus: ^1.6.1
+  curved_navigation_bar: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -35,4 +37,5 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/astronaut.glb
     - assets/images/back/

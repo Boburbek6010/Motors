@@ -14,6 +14,7 @@ class AppColors {
 
   //every colors
   static const cF3F7F9 = Color(0xffF3F7F9);
+  static const c99ffffff = Color(0x99ffffff);
   static const n26FFFFFF = Color(0x26ffffff);
   static const c292C31 = Color(0xff292C31);
   static const c5effffff = Color(0x5effffff);
@@ -28,6 +29,7 @@ class AppColors {
   static const neuBlack = Color(0xFF3E3E3E);
   static const c3554D1 = Color(0xff3554D1);
   static const c121F3E = Color(0xff121F3E);
+  static const cNavigationBarColor = Color.fromRGBO(68, 61, 103, 1);
 
   // gradients
   static const unlockPageGradient = <Color>[c252323, c000000,c000000,c000000,  c252323];

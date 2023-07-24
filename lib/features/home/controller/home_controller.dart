@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gm_motors/core/routes/app_route_names.dart';
 import 'package:gm_motors/core/services/auth_service.dart';
 import 'package:gm_motors/core/services/util_service.dart';
 import 'package:gm_motors/core/style/colors.dart';
@@ -136,8 +137,7 @@ class HomeCT extends ChangeNotifier {
                   onPressed: () async {
                     if (!hasError) {
                       final String reason = deleteAccountController.text;
-                      final String date =
-                          "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}  \nsoat:${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
+                      final String date = "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}  \nsoat:${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
                       await deleteAccount.add({
                         "reason": reason,
                         "date": date,
@@ -149,9 +149,7 @@ class HomeCT extends ChangeNotifier {
                       if (!context.mounted) return;
                       Navigator.of(context).pop();
                       Navigator.of(context).pop();
-                      Utils.fireSnackBar(
-                          "Sizni so'rovingizni tez orada ko'rib chiqamiz",
-                          context);
+                      Utils.fireSnackBar("Sizni so'rovingizni tez orada ko'rib chiqamiz", context);
                     }
                   },
                   child: const Text('Report'))
@@ -229,6 +227,7 @@ class HomeCT extends ChangeNotifier {
               child: const Text('Yes'),
               onPressed: () {
                 AuthService.signOutUser(context);
+                Navigator.pushNamedAndRemoveUntil(context, AppRouteNames.AUTHGATE, (route) => false);
               },
             ),
           ],

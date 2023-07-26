@@ -22,13 +22,16 @@ class AuthService{
       UserCredential credential = await _auth.signInWithEmailAndPassword(email: email, password: password);
       return credential.user;
     }catch(e){
-      Utils.fireSnackBar(e.toString(), context);
+      Utils.fireSnackBar(e.toString().substring(30), context);
     }
     return null;
   }
 
   static Future<void> signOutUser(BuildContext context)async{
     await _auth.signOut();
+    if(context.mounted) {
+      Utils.fireSnackBar("You have logged out", context);
+    }
   }
 
 }

@@ -98,6 +98,8 @@ class AuthCT extends ChangeNotifier {
     if(user != null){
       await DBService.saveUserId(user.uid);
       loginPassed = true;
+      emailControllerForLogin.clear();
+      passwordControllerForLogin.clear();
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(
         userName: user.displayName!,
         userEmail: user.email!,

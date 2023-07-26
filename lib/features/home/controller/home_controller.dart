@@ -99,8 +99,7 @@ class HomeCT extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> report(String name, String contact, BuildContext context,
-      [DocumentSnapshot? documentSnapshot]) async {
+  Future<void> report(String name, String contact, BuildContext context, [DocumentSnapshot? documentSnapshot]) async {
     await showModalBottomSheet(
       isScrollControlled: true,
       context: context,

@@ -6,7 +6,7 @@ import 'package:gm_motors/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:gm_motors/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:gm_motors/features/detail/presentation/pages/detail_page.dart';
 import 'package:gm_motors/features/entertainment/presentation/pages/crash_page.dart';
-import 'package:gm_motors/features/main/presentation/main_page.dart';
+import 'package:gm_motors/features/main/presentation/pages/main_page.dart';
 
 import '../../features/crash/presentation/pages/crash_page.dart';
 import '../../features/example_page.dart';
@@ -25,7 +25,7 @@ class AppRoutes {
     AppRouteNames.AUTHGATE: (context) => const AuthGate(),
     AppRouteNames.Example: (context) => const ExamplePage(),
     AppRouteNames.CRASH: (context) => const CrashPage(),
-    AppRouteNames.MAIN: (context) => const MainPage(),
+    // AppRouteNames.MAIN: (context) => const MainPage(),
     AppRouteNames.ENTERTAINMENT: (context) => const EntertainmentPage(),
   };
 }

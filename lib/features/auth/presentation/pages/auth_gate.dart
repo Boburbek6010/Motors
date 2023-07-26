@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gm_motors/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:gm_motors/features/home/presentation/pages/home_page.dart';
-import 'package:gm_motors/features/main/presentation/main_page.dart';
+import 'package:gm_motors/features/main/presentation/pages/main_page.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({Key? key}) : super(key: key);

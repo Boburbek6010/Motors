@@ -20,8 +20,8 @@ class CustomBottomNavigation extends StatelessWidget {
       index: index,
       items: const [
         Icon(CupertinoIcons.home, color: AppColors.white),
-        Icon(CupertinoIcons.plus_square_on_square, color: AppColors.white),
-        Icon(CupertinoIcons.person, color: AppColors.white),
+        // Icon(CupertinoIcons.plus_square_on_square, color: AppColors.white),
+        Icon(Icons.car_crash_outlined, color: AppColors.white),
       ],
     );
   }

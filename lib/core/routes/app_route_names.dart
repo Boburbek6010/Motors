@@ -9,6 +9,6 @@ class AppRouteNames {
   static const AUTHGATE = '/auth_gate_page';
   static const Example = '/example_page';
   static const CRASH = '/crash_page';
-  static const MAIN = '/main_page';
+  // static const MAIN = '/main_page';
   static const ENTERTAINMENT = '/entertainment_page';
 }

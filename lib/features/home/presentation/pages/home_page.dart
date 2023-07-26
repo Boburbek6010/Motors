@@ -23,7 +23,7 @@ class HomePage extends ConsumerStatefulWidget {
   ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> with AutomaticKeepAliveClientMixin{
   @override
   void initState() {
     super.initState();
@@ -35,9 +35,11 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     ref.watch(homeController);
     return CustomScaffold(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         drawer: Drawer(
           child: CustomHomeDrawer(
             name: widget.userName,
@@ -70,47 +72,43 @@ class _HomePageState extends ConsumerState<HomePage> {
                 child: StreamBuilder(
                     stream: ref.read(homeController).product,
                     builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                      if(streamSnapshot.hasData){
-                        if(ref.read(homeController).isLoading){
-                          return GridView.builder(
-                            shrinkWrap: true,
-                            physics: const BouncingScrollPhysics(),
-                            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 207,
-                              crossAxisSpacing: 0,
-                              mainAxisSpacing: 0,
-                            ),
-                            itemCount:  streamSnapshot.data!.docs.length,
-                            itemBuilder: (ctx, index) {
-                              final DocumentSnapshot documentSnapshot =
-                              streamSnapshot.data!.docs[index];
-                              // Stream<QuerySnapshot<Map<String, dynamic>>> a = documentSnapshot.reference.collection('products').orderBy("price").snapshots();
-                              return HomeCardCar(
-                                image: ref.read(homeController).carImage[index],
-                                text: documentSnapshot["name"],
-                                onTap: () {
-                                  Navigator.pushNamed(context, AppRouteNames.DETAIL,
-                                    arguments: CustomCar(
-                                      desc: documentSnapshot["description"],
-                                      name: documentSnapshot["name"],
-                                      image: ref.read(homeController).carImage[index],
-                                      price: documentSnapshot["price"],
-                                      currency: documentSnapshot["currency"],
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          );
-                        } else{
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
+                      if(ref.read(homeController).isLoading){
+                        return GridView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 207,
+                            crossAxisSpacing: 0,
+                            mainAxisSpacing: 0,
+                          ),
+                          itemCount:  streamSnapshot.data!.docs.length,
+                          itemBuilder: (ctx, index) {
+                            final DocumentSnapshot documentSnapshot =
+                            streamSnapshot.data!.docs[index];
+                            // Stream<QuerySnapshot<Map<String, dynamic>>> a = documentSnapshot.reference.collection('products').orderBy("price").snapshots();
+                            return HomeCardCar(
+                              image: ref.read(homeController).carImage[index],
+                              text: documentSnapshot["name"],
+                              onTap: () {
+                                Navigator.pushNamed(context, AppRouteNames.DETAIL,
+                                  arguments: CustomCar(
+                                    desc: documentSnapshot["description"],
+                                    name: documentSnapshot["name"],
+                                    image: ref.read(homeController).carImage[index],
+                                    price: documentSnapshot["price"],
+                                    currency: documentSnapshot["currency"],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        );
+                      } else{
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
                       }
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
                   }
                 ),
               ),
@@ -120,6 +118,10 @@ class _HomePageState extends ConsumerState<HomePage> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
 
 
